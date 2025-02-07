@@ -1,6 +1,9 @@
 import openai
 import streamlit as st
 
+# Retrieve API key from Streamlit secrets
+openai.api_key = st.secrets["openai"]["api_key"]
+
 # Function to generate diverse interview questions
 def generate_questions(job_title, company, job_description, past_questions):
     prompt = f"""
