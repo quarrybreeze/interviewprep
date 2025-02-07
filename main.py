@@ -2,7 +2,7 @@ import openai
 import streamlit as st
 
 # Retrieve API key from Streamlit secrets
-openai.api_key = st.secrets["openai"]["api_key"]
+api_key = st.secrets["openai"]["api_key"]
 
 # Function to generate diverse interview questions
 def generate_questions(job_title, company, job_description, past_questions):
@@ -21,7 +21,7 @@ def generate_questions(job_title, company, job_description, past_questions):
     Question:
     """
 
-    client = openai.OpenAI()
+    client = openai.OpenAI(api_key=api_key)
 
     response = client.chat.completions.create(
         model="gpt-4o-mini",
@@ -49,7 +49,7 @@ def evaluate_response(question, user_response):
     Feedback: [Your feedback]
     """
 
-    client = openai.OpenAI()
+    client = openai.OpenAI(api_key=api_key)
 
     response = client.chat.completions.create(
         model="gpt-4o-mini",
